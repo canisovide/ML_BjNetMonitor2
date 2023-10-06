@@ -25,6 +25,16 @@ Modules:
 
 Version : 1.1
 """
-
+import numpy as np
 import pandas as pd
+
+bjnetmonitor_data = pd.read_csv("./inputs/BjNetMonitor.csv")
+np.random.seed(0)
+bjnetmonitor_data_cp = bjnetmonitor_data.copy()
+print(len(bjnetmonitor_data_cp))
+# bjnetmonitor_data_cp.set_index("index")
+
+#
+bjnetmonitor_data_cp_1 = bjnetmonitor_data_cp.loc[(bjnetmonitor_data_cp["Minimum RTT"] != 0)
+                                                  | (bjnetmonitor_data_cp['Maximum RTT'] != 0)]
 
