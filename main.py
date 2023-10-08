@@ -31,10 +31,18 @@ import pandas as pd
 bjnetmonitor_data = pd.read_csv("./inputs/BjNetMonitor.csv")
 np.random.seed(0)
 bjnetmonitor_data_cp = bjnetmonitor_data.copy()
-print(len(bjnetmonitor_data_cp))
-# bjnetmonitor_data_cp.set_index("index")
 
-#
+
 bjnetmonitor_data_cp_1 = bjnetmonitor_data_cp.loc[(bjnetmonitor_data_cp["Minimum RTT"] != 0)
                                                   | (bjnetmonitor_data_cp['Maximum RTT'] != 0)]
+
+new_column = pd.Series( pd.to_datetime(bjnetmonitor_data_cp_1['category'],
+                                                       format="mixed", dayfirst=True),
+                        name="Date_parsed"
+                        )
+bjnetmonitor_data_cp_2 = pd.concat([bjnetmonitor_data_cp_1, new_column], axis=1)
+print(bjnetmonitor_data_cp_2['Date_parsed'].head())
+
+
+
 
