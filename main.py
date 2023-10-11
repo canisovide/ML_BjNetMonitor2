@@ -43,6 +43,8 @@ new_column = pd.Series( pd.to_datetime(bjnetmonitor_data_cp_1['category'],
 bjnetmonitor_data_cp_2 = pd.concat([bjnetmonitor_data_cp_1, new_column], axis=1)
 print(bjnetmonitor_data_cp_2['Date_parsed'].head())
 
+print("Hello world")
+
 
 
 
