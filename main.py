@@ -25,11 +25,13 @@ Modules:
 
 Version : 1.1
 """
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import seaborn as sns
 
 bjnetmonitor_data = pd.read_csv("./inputs/BjNetMonitor.csv")
-np.random.seed(0)
+
 bjnetmonitor_data_cp = bjnetmonitor_data.copy()
 
 
@@ -41,10 +43,12 @@ new_column = pd.Series( pd.to_datetime(bjnetmonitor_data_cp_1['category'],
                         name="Date_parsed"
                         )
 bjnetmonitor_data_cp_2 = pd.concat([bjnetmonitor_data_cp_1, new_column], axis=1)
-print(bjnetmonitor_data_cp_2['Date_parsed'].head())
+print(help(bjnetmonitor_data_cp_2.drop))
+bjnetmonitor_data_cp_2.drop('category', axis=1)
 
-print("Hello world")
-
-
-
-
+#etape de l'EDA
+bjnetmonitor_data_cp_2.set_index("Date_parsed")
+print(bjnetmonitor_data_cp_2.head(50))
+print(help(bjnetmonitor_data_cp_2.set_index))
+plt.figure(figsize=(32, 12))
+# sns.lineplot(data=bjnetmonitor_data_cp_2["Maximum RTT"], x="Date_parsed")
